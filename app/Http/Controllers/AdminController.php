@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Spider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,6 +15,14 @@ class AdminController extends Controller{
         $a['permissions']=['admin'];
         $a['username']='admin';
         return $this->encode($a);
+    }
+    //获取蜘蛛的统计信息
+    public function spiders(){
+        $spiders=Spider::get();
+        foreach($spiders as $spider){
+            $logs=$spider->logs;
+        }
+        return $this->encode($spiders);
     }
     //退出
     public function logout(Request $request){

@@ -26,10 +26,11 @@ Route::get('/cc',[BaiduController::class,'index']);
 Route::get('/test',[IndexController::class,'test']);
 //chatgpt包https://github.com/openai-php/client
 //key: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
-
+Route::get('/spiders',[AdminController::class,'spiders']);
 //以下是后台路由
 Route::post('/login',[AdminController::class,'login']);
 Route::group(['middleware'=>['auth:api']],function(){
+
     Route::post('/userinfo',[AdminController::class,'userinfo']);
     Route::post('/logout',[AdminController::class,'logout']);
 });
